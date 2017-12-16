@@ -11,6 +11,7 @@ public class LightController : MonoBehaviour
 	void LateUpdate () 
 	{
 		Vector3 playerpos = this.gameObject.transform.position;
-		light.transform.position = playerpos + offset;
+		if(light != null)
+			light.transform.position = playerpos + offset;
 	}
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
 public class CameraController : MonoBehaviour 
 {
 
@@ -17,14 +16,6 @@ public class CameraController : MonoBehaviour
 	}
 
 	void LateUpdate () 
-=======
-public class CameraController : MonoBehaviour {
-
-	public Vector3 offset;
-	public GameObject toFollow;
-
-	void FixedUpdate () 
->>>>>>> origin/master
 	{
 		this.transform.position = toFollow.transform.position + offset;
 	}
