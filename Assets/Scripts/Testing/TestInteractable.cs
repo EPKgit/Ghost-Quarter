@@ -11,7 +11,7 @@ public class TestInteractable : Interactable {
 	private bool chestOpen;
 	private SpriteRenderer sp;
 
-	IEnumerator Start()
+	protected override IEnumerator Start()
 	{
 		yield return StartCoroutine(base.Start());
 		chestOpen = false;

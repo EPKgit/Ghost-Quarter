@@ -2,34 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour 
+public class PlayerMovement : Singleton<PlayerMovement>
 {
 
-	[HideInInspector]public static PlayerMovement instance;
 	public float movementSpeed;
 
 	private Rigidbody2D rb;
 	private BoxCollider2D col;
 	private Animator anim;
 	private Vector2 lastMove;
+	private bool hasControl;
 
 	void Start ()
 	{
-		if(instance != null)
-			Destroy(this);
-		instance = this;
-		
+		base.EnforceSingleton();		
 		rb = GetComponent<Rigidbody2D>();
 		col = GetComponent<BoxCollider2D>();
 		anim = GetComponent<Animator>();
+		hasControl = true;
 	}
 
 	void Update () 
 	{
+		if(!hasControl)
+			return;
 		float MoveHorizontal = Input.GetAxisRaw("Horizontal");
 		float MoveVertical = Input.GetAxisRaw("Vertical");
 		Vector2 movement = new Vector2(MoveHorizontal, MoveVertical);
-		rb.velocity = movement*movementSpeed;
+		rb.velocity = movement * movementSpeed;
 		UpdateAnimation(movement.normalized);
 	}
 
@@ -51,5 +51,22 @@ public class PlayerMovement : MonoBehaviour
 		}
 		anim.SetFloat("VelocityX", dir.x);
 		anim.SetFloat("VelocityY", dir.y);
+	}
+
+	public void removePlayerControl()
+	{
+		rb.velocity = Vector2.zero;
+		hasControl = false;
+	}
+
+	public void returnPlayerControl()
+	{
+		hasControl = true;
+	}
+
+	public void removePlayerControl(float time)
+	{
+		removePlayerControl();
+		Invoke("returnPlayerControl", time);
 	}
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 public class LightController : MonoBehaviour 
 {
 
-	public GameObject light;
+	public GameObject toControl;
 	public Vector3 offset;
 
 	void LateUpdate () 
 	{
 		Vector3 playerpos = this.gameObject.transform.position;
-		if(light != null)
-			light.transform.position = playerpos + offset;
+		if(toControl != null)
+			toControl.transform.position = playerpos + offset;
 	}
 }

@@ -7,31 +7,40 @@ public abstract class Interactable : MonoBehaviour
 {
 	public GameObject interactionPrefab;
 
-	private bool playerInRange;
-	private GameObject interactionDisplay;
-
-	protected IEnumerator Start () 
+	protected bool playerInRange;
+	protected GameObject interactionDisplay;
+	private bool isInteractable;
+	
+	protected virtual IEnumerator Start () 
 	{
 		if(this.GetComponent<Collider2D>() == null)
 			Debug.Log(this.name + " does not have the required collider.");
-		yield return new WaitUntil(()=>PlayerInteraction.instance != null);
-		PlayerInteraction.instance.interact.AddListener(AttemptInteract);
+		yield return new WaitUntil(()=>PlayerEventEmitter.instance != null);
+		PlayerEventEmitter.instance.interact.AddListener(AttemptInteract);
+		isInteractable = true;
 	}
 	
 	void AttemptInteract()
 	{
-		if(playerInRange)
+		if(playerInRange && isInteractable)
 		{
-			Interact(PlayerInteraction.instance.gameObject);
+			Interact(PlayerEventEmitter.instance.gameObject);
 		}
 
+	}
+
+	public void removeInteractability()
+	{
+		isInteractable = false;
+		if(interactionDisplay != null)
+			Destroy(interactionDisplay);
 	}
 
 	public abstract void Interact(GameObject user);
 	
 	void OnTriggerEnter2D(Collider2D other) 
 	{
-		if(other.gameObject.tag == "Player")
+		if(other.gameObject.tag == "Player" && isInteractable)
 		{
 			playerInRange = true;
 			interactionDisplay = Instantiate(interactionPrefab, this.gameObject.transform, false);
@@ -40,7 +49,7 @@ public abstract class Interactable : MonoBehaviour
 
 	void OnTriggerExit2D(Collider2D other) 
 	{
-		if(other.gameObject.tag == "Player")
+		if(other.gameObject.tag == "Player" && isInteractable)
 		{
 			playerInRange = false;
 			Destroy(interactionDisplay);
