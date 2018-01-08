@@ -117,39 +117,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1023575194090160, guid: 7f8ebedd0d0e7154abe803eca1f67915,
     type: 2}
   m_PrefabInternal: {fileID: 456265713}
---- !u!114 &151072886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 151072885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d729f71943bff4b845a0cf0a951410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interact:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!95 &151072887
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 151072885}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ddd8b1944eddb0e4e9261aec8e7abc47, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &456265713
 Prefab:
   m_ObjectHideFlags: 0
@@ -194,11 +161,6 @@ Prefab:
       propertyPath: light
       value: 
       objectReference: {fileID: 589582424}
-    - target: {fileID: 114515195690086124, guid: 7f8ebedd0d0e7154abe803eca1f67915,
-        type: 2}
-      propertyPath: movementSpeed
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f8ebedd0d0e7154abe803eca1f67915, type: 2}
   m_IsPrefabParent: 0

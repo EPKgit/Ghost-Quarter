@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 50450848557596648}
   - component: {fileID: 61160483020636764}
   - component: {fileID: 114792824305811766}
+  - component: {fileID: 95068212222645718}
+  - component: {fileID: 114056396010651194}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -89,6 +91,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!95 &95068212222645718
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023575194090160}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ddd8b1944eddb0e4e9261aec8e7abc47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114056396010651194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023575194090160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d729f71943bff4b845a0cf0a951410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114515195690086124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523b2309a08666044801cc017486f788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 1
 --- !u!114 &114792824305811766
 MonoBehaviour:
   m_ObjectHideFlags: 1
