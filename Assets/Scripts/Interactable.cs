@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public abstract class Interactable : MonoBehaviour 
 {
-	public GameObject interactionPrefab;
 
 	protected bool playerInRange;
 	protected GameObject interactionDisplay;
+	protected Animator animator;
+	protected new ParticleSystem particleSystem;
+
 	private bool isInteractable;
 	
 	protected virtual IEnumerator Start () 
@@ -18,6 +20,8 @@ public abstract class Interactable : MonoBehaviour
 		yield return new WaitUntil(()=>PlayerEventEmitter.instance != null);
 		PlayerEventEmitter.instance.interact.AddListener(AttemptInteract);
 		isInteractable = true;
+		animator = GetComponent<Animator>();
+		particleSystem = GetComponent<ParticleSystem>();
 	}
 	
 	void AttemptInteract()
@@ -32,18 +36,27 @@ public abstract class Interactable : MonoBehaviour
 	public void removeInteractability()
 	{
 		isInteractable = false;
-		if(interactionDisplay != null)
-			Destroy(interactionDisplay);
+		HideAnimationDisplay();
 	}
 
 	public abstract void Interact(GameObject user);
-	
+
+	public virtual void AnimationDisplay()
+	{
+		particleSystem.Play();
+	}
+	public virtual void HideAnimationDisplay()
+	{
+		particleSystem.Stop();
+	}
+
+
 	void OnTriggerEnter2D(Collider2D other) 
 	{
 		if(other.gameObject.tag == "Player" && isInteractable)
 		{
 			playerInRange = true;
-			interactionDisplay = Instantiate(interactionPrefab, this.gameObject.transform, false);
+			AnimationDisplay();
 		}
 	}
 
@@ -52,7 +65,7 @@ public abstract class Interactable : MonoBehaviour
 		if(other.gameObject.tag == "Player" && isInteractable)
 		{
 			playerInRange = false;
-			Destroy(interactionDisplay);
+			HideAnimationDisplay();
 		}
 	}
 }

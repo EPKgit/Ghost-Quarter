@@ -47,7 +47,6 @@ public class DialogueManager : Singleton<DialogueManager>
 
 	void EndDialogue()
 	{
-		Debug.Log("end");
 		dialogueText.text = "";
 		animator.SetBool("isOpen", false);
 		inDialogue = false;

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestInteractable : Interactable {
+public class TestInteractable : Interactable 
+{
 
 	public Sprite oChest;
 	public Sprite cChest;
@@ -16,15 +17,14 @@ public class TestInteractable : Interactable {
 		yield return StartCoroutine(base.Start());
 		chestOpen = false;
 		sp = GetComponent<SpriteRenderer>();
+		particleSystem.Stop();
 	}
 
 	
 	public override void Interact(GameObject user)
 	{
 		chestOpen = !chestOpen;
-		if(chestOpen)
-			sp.sprite = oChest;
-		else
-			sp.sprite = cChest;
+		animator.SetBool("IsOpen", chestOpen);
 	}
+
 }

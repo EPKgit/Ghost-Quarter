@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : Interactable {
+public class DialogueTrigger : Interactable 
+{
 
 	public string speaker;
 	public Dialogue[] script;
